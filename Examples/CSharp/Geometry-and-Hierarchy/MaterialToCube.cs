@@ -18,48 +18,52 @@ namespace CSharp.Geometry_Hierarchy
     {
         public static void Run()
         {
-            // initialize scene object
+            // Initialize scene object
             Scene scene = new Scene();
             
-            // initialize cube node object
+            // Initialize cube node object
             Node cubeNode = new Node("cube");
             
-            // Call CubeMesh class create method to set mesh instance 
-            Mesh mesh = CubeMesh.CreateCubeMesh();
+            // Call Common class create mesh method to set mesh instance 
+            Mesh mesh = Common.CreateMesh();
             
-            // point node to the mesh
+            // Point node to the mesh
             cubeNode.Entity = mesh;
             
-            // add cube to the scene
+            // Add cube to the scene
             scene.RootNode.ChildNodes.Add(cubeNode);
 
-            // initiallize PhongMaterial object
+            // Initiallize PhongMaterial object
             PhongMaterial mat = new PhongMaterial();
-            // initiallize Texture object
+            
+            // Initiallize Texture object
             Texture diffuse = new Texture();
             
             // The path to the documents directory.
             string MyDir = RunExamples.GetDataDir_GeometryAndHierarchy();
             
-            // set local file path
+            // Set local file path
             diffuse.FileName = MyDir + "surface.dds";
-            // set Texture of the material
+
+            // Set Texture of the material
             mat.SetTexture("DiffuseColor", diffuse);
             
-            // set color
+            // Set color
             mat.SpecularColor = new Vector3(Color.Red);
-            // set brightness
+
+            // Set brightness
             mat.Shininess = 100;
-            // set material property of the cube object
+
+            // Set material property of the cube object
             cubeNode.Material = mat;
-
-
+            
             MyDir = MyDir + "MaterialToCube.fbx";
             
-            // save 3D scene in the supported file formats
+            // Save 3D scene in the supported file formats
             scene.Save(MyDir, FileFormat.FBX7400ASCII);
 
-            Console.WriteLine("\nMaterial added successfully to cube.");
+            Console.WriteLine("\nMaterial added successfully to cube.\nFile saved at " + MyDir);
+
         }
     }
 }

@@ -16,16 +16,16 @@ namespace CSharp.AssetInformation
     {
         public static void Run()
         {
-            // initialize a 3D scene
+            // Initialize a 3D scene
             Scene scene = new Scene();
             
-            // set application/tool name
+            // Set application/tool name
             scene.AssetInfo.ApplicationName = "Egypt";
             
-            // set application/tool vendor name
+            // Set application/tool vendor name
             scene.AssetInfo.ApplicationVendor = "Manualdesk";
             
-            // we use ancient egyption measurement unit Pole
+            // We use ancient egyption measurement unit Pole
             scene.AssetInfo.UnitName = "pole";
             
             // One Pole equals to 60cm
@@ -34,11 +34,11 @@ namespace CSharp.AssetInformation
             // The path to the documents directory.
             string MyDir = RunExamples.GetDataDir_AssetInformation();
             MyDir = MyDir + "InformationToScene.fbx";
-            
-            // scene to 3D supported file formats
+
+            // Save scene to 3D supported file formats
             scene.Save(MyDir, FileFormat.FBX7400ASCII);
 
-            Console.WriteLine("\nAsset information added successfully to Scene.");
+            Console.WriteLine("\nAsset information added successfully to Scene.\nFile saved at " + MyDir);
         }
     }
 }

@@ -19,32 +19,32 @@ namespace CSharp.Geometry_Hierarchy
     {
         public static void Run()
         {
-            // initialize scene object
+            // Initialize scene object
             Scene scene = new Scene();
 
-            // define color vectors
+            // Define color vectors
             Vector3[] colors = new Vector3[] {
     new Vector3(1, 0, 0),
     new Vector3(0, 1, 0),
     new Vector3(0, 0, 1)
 };
-            // Call CubeMesh class create method to set mesh instance 
-            Mesh mesh = CubeMesh.CreateCubeMesh();
+            // Call Common class create meshh method to set mesh instance 
+            Mesh mesh = Common.CreateMesh();
 
             int idx = 0;
             foreach (Vector3 color in colors)
             {
-                // initialize cube node object
+                // Initialize cube node object
                 Node cube = new Node("cube");
                 cube.Entity = mesh;
                 LambertMaterial mat = new LambertMaterial();
-                // set color
+                // Set color
                 mat.DiffuseColor = color;
-                // set material
+                // Set material
                 cube.Material = mat;
-                // set translation
+                // Set translation
                 cube.Transform.Translation = new Vector3(idx++ * 20, 0, 0);
-                // add cube node
+                // Add cube node
                 scene.RootNode.ChildNodes.Add(cube);
             }
 
@@ -52,10 +52,11 @@ namespace CSharp.Geometry_Hierarchy
             string MyDir = RunExamples.GetDataDir_GeometryAndHierarchy();
             MyDir = MyDir + "MeshGeometryData.fbx";
             
-            // save 3D scene in the supported file formats
+            // Save 3D scene in the supported file formats
             scene.Save(MyDir, FileFormat.FBX7400ASCII);
 
-            Console.WriteLine("\nMesh’s geometry data shared successfully between multiple nodes.");
+            Console.WriteLine("\nMesh’s geometry data shared successfully between multiple nodes.\nFile saved at " + MyDir);
+
         }
     }
 }

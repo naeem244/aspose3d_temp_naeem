@@ -20,34 +20,34 @@ namespace CSharp.Animation
     {
         public static void Run()
         {
-            // initialize scene object
+            // Initialize scene object
             Scene scene = new Scene();
             
-            // Call CubeMesh class create method to set mesh instance 
-            Mesh mesh = CubeMesh.CreateCubeMesh();
+            // Call Common class create mesh method to set mesh instance 
+            Mesh mesh = Common.CreateMesh();
 
-            // each cube node has their own translation
+            // Each cube node has their own translation
             Node cube1 = scene.RootNode.CreateChildNode("cube1", mesh);
 
-            //Find translation property on node's transform object
+            // Find translation property on node's transform object
             Property translation = cube1.Transform.FindProperty("Translation");
             
-            //Create a curve mapping based on translation property
+            // Create a curve mapping based on translation property
             CurveMapping mapping = new CurveMapping(scene, translation);
             
-            //Create curve on channel X and Z
+            // Create curve on channel X and Z
             Curve curveX = mapping.CreateCurve("X");
             Curve curveZ = mapping.CreateCurve("Z");
             
-            //Move node's translation to (10, 0, 10) at 0 sec using bezier interpolation
+            // Move node's translation to (10, 0, 10) at 0 sec using bezier interpolation
             curveX.CreateKeyFrame(0, 10.0f, Interpolation.Bezier);
             curveZ.CreateKeyFrame(0, 10.0f, Interpolation.Bezier);
             
-            //Move node's translation to (20, 0, -10) at 3 sec
+            // Move node's translation to (20, 0, -10) at 3 sec
             curveX.CreateKeyFrame(3, 20.0f, Interpolation.Bezier);
             curveZ.CreateKeyFrame(3, -10.0f, Interpolation.Bezier);
             
-            //Move node's translation to (30, 0, 0) at 5 sec
+            // Move node's translation to (30, 0, 0) at 5 sec
             curveX.CreateKeyFrame(5, 30.0f, Interpolation.Linear);
             curveZ.CreateKeyFrame(5, 0.0f, Interpolation.Bezier);
 
@@ -55,10 +55,11 @@ namespace CSharp.Animation
             string MyDir = RunExamples.GetDataDir_Animation();
             MyDir = MyDir + "PropertyToDocument.fbx";
 
-            // save 3D scene in the supported file formats
+            // Save 3D scene in the supported file formats
             scene.Save(MyDir, FileFormat.FBX7400ASCII);
 
-            Console.WriteLine("\nAnimation property added successfully to document.");
+            Console.WriteLine("\nAnimation property added successfully to document.\nFile saved at " + MyDir);
+            
         }
     }
 }
